@@ -1,8 +1,10 @@
 #
 # ~/.bashrc
-eval "$(starship init bash)"
+#
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
@@ -17,12 +19,9 @@ function newpost {
 
 # Kubectl
 alias k='kubectl'
-
 [[ -r /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
-
-source <(kubectl completion bash)
-
-complete -o default -F __start_kubectl k
+command -v kubectl &>/dev/null && source <(kubectl completion bash)
+command -v kubectl &>/dev/null && complete -o default -F __start_kubectl k
 export KUBE_EDITOR=vim
 export TERM=xterm-256color
 
@@ -30,11 +29,11 @@ export TERM=xterm-256color
 export PATH="/home/rahat/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
-# XDG Base Directory spec - sets standard paths for config, data, cache, and state files
+# XDG Base Directory spec
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
-eval $(ssh-agent) > /dev/null && ssh-add -K 2>/dev/null
 
+command -v starship &>/dev/null && eval "$(starship init bash)"
 eval "$(mise activate bash)"
