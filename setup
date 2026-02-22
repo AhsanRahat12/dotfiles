@@ -1,8 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 
-# Initialize chezmoi and apply dotfiles from GitHub repo
-# Skips install since mise handles that via postCreateCommand
-chezmoi init --apply git@github.com:AhsanRahat12/dotfiles.git
+# Install chezmoi if not already installed (mise may have already done this)
+# Then initialize and apply dotfiles from GitHub
+if ! command -v chezmoi >/dev/null; then
+    sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply git@github.com:AhsanRahat12/dotfiles.git
+fi
 
 exit 0

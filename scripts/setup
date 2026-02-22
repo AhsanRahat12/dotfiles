@@ -1,6 +1,0 @@
-#!/bin/bash
-# This script runs as the postCreateCommand when a new DevContainer is created.
-# It trusts the mise.toml in the workspace so mise can read it without warnings,
-# then installs all tools defined in it (chezmoi, kubectl etc.)
-
-/usr/local/bin/mise trust /workspaces/$DEVPOD_WORKSPACE_ID/mise.toml && /usr/local/bin/mise install
