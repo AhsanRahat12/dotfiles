@@ -37,3 +37,8 @@ export XDG_STATE_HOME="$HOME/.local/state"
 
 command -v starship &>/dev/null && eval "$(starship init bash)"
 eval "$(mise activate bash)"
+
+# SSH Agent - loads YubiKey into agent so git can authenticate with GitHub
+# Only prompts for PIN if key is not already loaded
+eval $(ssh-agent) > /dev/null
+ssh-add -l &>/dev/null || ssh-add -K
