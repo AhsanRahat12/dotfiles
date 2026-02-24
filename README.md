@@ -129,3 +129,13 @@ The chezmoi script detects changes and automatically runs `mise install`. To fin
 | **Project tools** | `mise.toml` in project root | Whole team, project directory only | kubectl, helm, terraform |
 
 Project-specific tooling lives in the [DevContainer repo](https://github.com/AhsanRahat12/DevContainer).
+
+---
+
+## Notes & Considerations
+
+> This setup is actively evolving — configs, tools, and structure will grow as the system matures.
+
+- **SSH bootstrap** — the bootstrap command requires an SSH key already on the machine. On a fresh machine, either set up SSH keys first or use the HTTPS URL instead: `https://github.com/AhsanRahat12/dotfiles.git`
+- **ARM / Pi support** — handled automatically via `{{.chezmoi.arch}}` in the externals template. Resolves to `arm64` on Pi, `amd64` on x86. No changes needed.
+- **Secret management** — sensitive configs (SSH keys, tokens) should not live in plaintext in the repo. Chezmoi supports `gopass` and 1Password integrations — planned for a future iteration.
