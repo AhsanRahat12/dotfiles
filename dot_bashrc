@@ -29,6 +29,10 @@ export TERM=xterm-256color
 export PATH="/home/rahat/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
+# Path for chezmoi
+export PATH="$HOME/bin:$PATH"
+
+
 # XDG Base Directory spec
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
