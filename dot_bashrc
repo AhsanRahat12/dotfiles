@@ -44,5 +44,5 @@ eval "$(mise activate bash)"
 
 # SSH Agent - loads YubiKey into agent so git can authenticate with GitHub
 # Only prompts for PIN if key is not already loaded
-eval $(ssh-agent) > /dev/null
-ssh-add -l &>/dev/null || ssh-add -K
+eval $(ssh-agent) > /dev/null 2>&1
+ssh-add -l &>/dev/null || ssh-add -K 2>/dev/null
