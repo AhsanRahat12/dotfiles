@@ -54,3 +54,18 @@ syntax on
 
 " Set backspace so it acts more intuitively
 set backspace=indent,eol,start
+
+" Search highlighting
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Show matching brackets
+set showmatch
+
+" Keep context when scrolling
+set scrolloff=8
+
+" Show cursor position
+set ruler
