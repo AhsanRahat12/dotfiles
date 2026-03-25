@@ -46,3 +46,12 @@ eval "$(mise activate bash)"
 # Only prompts for PIN if key is not already loaded
 eval $(ssh-agent) > /dev/null 2>&1
 ssh-add -l &>/dev/null || ssh-add -K 2>/dev/null
+
+# Tab completion - cycle through options
+bind '"\t": menu-complete'
+bind '"\e[Z": menu-complete-backward'
+bind 'set show-all-if-ambiguous on'
+bind 'set menu-complete-display-prefix on'
+
+# fzf
+command -v fzf &>/dev/null && eval "$(fzf --bash)"
