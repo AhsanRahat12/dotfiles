@@ -55,3 +55,11 @@ bind 'set menu-complete-display-prefix on'
 
 # fzf
 command -v fzf &>/dev/null && eval "$(fzf --bash)"
+
+# eza - better ls
+command -v eza &>/dev/null && alias ls='eza --icons --group-directories-first'
+command -v eza &>/dev/null && alias ll='eza --icons --group-directories-first -la'
+command -v eza &>/dev/null && alias lt='eza --icons --tree --level=2'
+
+# zoxide - smarter cd
+command -v zoxide &>/dev/null && eval "$(zoxide init bash)"
