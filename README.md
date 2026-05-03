@@ -1,15 +1,11 @@
 # dotfiles
-
 Personal dotfiles managed by [chezmoi](https://chezmoi.io). Works on any machine — Arch Linux, Ubuntu, macOS, or inside a DevContainer.
-
 > **Related repo:** [DevContainer](https://github.com/AhsanRahat12/DevContainer) — project-specific tooling and dev environment setup.
 
 ---
 
 ## Overview
-
 This repo manages everything personal and portable:
-
 - **Chezmoi Externals** — downloads the `mise` binary automatically on any machine
 - **Global Mise Config** — defines personal tools available everywhere (chezmoi, bat, neovim, etc.)
 - **Chezmoi Scripts** — automatically runs `mise install` when the tool list changes
@@ -22,7 +18,6 @@ The system is built on two tools:
 ---
 
 ## Directory Structure
-
 ```
 ~/.local/share/chezmoi/
 ├── dot_bashrc                          → ~/.bashrc
@@ -51,7 +46,6 @@ dot_config/
 ---
 
 ## How to Use on a New Machine
-
 ```bash
 # Install chezmoi and apply dotfiles in one command
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply git@github.com:AhsanRahat12/dotfiles.git
@@ -64,12 +58,34 @@ This will:
 
 ---
 
+## Keeping Machines Up to Date
+
+Any machine following this repo can be synced with one command:
+
+```bash
+chezmoi update
+```
+
+This pulls the latest changes from GitHub and applies them to the local machine in one step. Run this whenever you've pushed changes from another machine.
+
+**The direction is always:**
+```
+GitHub (source of truth)
+        ↓
+chezmoi update
+        ↓
+Live machine matches repo
+```
+
+Never edit live files directly (e.g. `~/.bashrc`, `~/.vimrc`). Always edit through chezmoi, apply, and push. If you edit a live file directly, chezmoi will detect the conflict and ask what to do the next time you apply.
+
+---
+
 ## How to Add a New Global Tool
 
 Global tools are personal tools available everywhere, regardless of project or directory.
 
 ### Method 1 — Edit the source directly (recommended)
-
 1. Open the global mise config in your chezmoi source:
 ```bash
 chezmoi cd
@@ -93,7 +109,6 @@ git push
 ```
 
 ### Method 2 — Use mise then sync back to chezmoi
-
 1. Add the tool via mise:
 ```bash
 mise use --global neovim
@@ -121,6 +136,12 @@ The chezmoi script detects changes and automatically runs `mise install`. To fin
 
 ---
 
+## How to Add a Vim Plugin
+
+Vim plugins are not binaries — mise doesn't manage them. Add them to `.chezmoiscripts/run_onchange_after_install_packages.sh.tmpl` following the same pattern already in the script, then apply and push.
+
+---
+
 ## Two-Tier Tooling System
 
 | Layer | Location | Scope | Examples |
@@ -129,6 +150,19 @@ The chezmoi script detects changes and automatically runs `mise install`. To fin
 | **Project tools** | `mise.toml` in project root | Whole team, project directory only | kubectl, helm, terraform |
 
 Project-specific tooling lives in the [DevContainer repo](https://github.com/AhsanRahat12/DevContainer).
+
+---
+
+## Quick Reference
+
+| Task | Command |
+|---|---|
+| Sync chezmoi dotfiles to current machine | `chezmoi apply` |
+| Sync machine from GitHub | `chezmoi update` |
+| Edit a dotfile | `chezmoi cd` then edit source file |
+| Add a binary tool | Add to `dot_config/mise/config.toml` |
+| Add a vim plugin | Add to `.chezmoiscripts/run_onchange...` |
+| Bootstrap a new machine | `sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin init --apply git@github.com:AhsanRahat12/dotfiles.git` |
 
 ---
 
