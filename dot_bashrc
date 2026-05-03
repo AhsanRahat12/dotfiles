@@ -63,3 +63,9 @@ command -v eza &>/dev/null && alias lt='eza --icons --tree --level=2'
 
 # zoxide - smarter cd
 command -v zoxide &>/dev/null && eval "$(zoxide init bash)"
+
+# ---- K8s Lab Mode ----
+alias lab-on='export KUBECONFIG=~/.kube/minikube-config && echo "✓ Lab mode ON — talking to Minikube"'
+alias lab-off='export KUBECONFIG=~/.kube/config && echo "✓ Lab mode OFF — talking to main clusters"'
+alias kctx='kubectl config current-context'
+# ----------------------

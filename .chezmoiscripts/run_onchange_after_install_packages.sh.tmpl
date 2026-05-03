@@ -3,3 +3,10 @@
 $HOME/.local/bin/mise trust $HOME/.config/mise/config.toml
 $HOME/.local/bin/mise trust $HOME/.local/share/chezmoi/dot_config/mise/config.toml
 $HOME/.local/bin/mise install
+
+# Vim plugins
+if [ ! -d "$HOME/.vim/pack/plugins/start/ale" ]; then
+  mkdir -p "$HOME/.vim/pack/plugins/start"
+  git clone --depth 1 https://github.com/dense-analysis/ale \
+    "$HOME/.vim/pack/plugins/start/ale"
+fi

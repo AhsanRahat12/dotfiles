@@ -69,3 +69,17 @@ set scrolloff=8
 
 " Show cursor position
 set ruler
+
+" ── ALE Linting ──────────────────────────────────────────
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+\   'terraform': ['tflint', 'terraform'],
+\   'yaml':      ['yamllint'],
+\   'sh':        ['shellcheck'],
+\}
+let g:ale_fixers = {
+\   'terraform': ['terraform'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
