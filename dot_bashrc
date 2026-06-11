@@ -23,6 +23,7 @@ alias k='kubectl'
 command -v kubectl &>/dev/null && source <(kubectl completion bash)
 command -v kubectl &>/dev/null && complete -o default -F __start_kubectl k
 export KUBE_EDITOR=vim
+export ANTHROPIC_MODEL=opusplan
 export TERM=xterm-256color
 
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
