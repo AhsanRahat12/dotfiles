@@ -32,6 +32,7 @@ export PATH="/home/rahat/.rd/bin:$PATH"
 # Path for chezmoi
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"  # npm global packages
 
 # XDG Base Directory spec
 export XDG_CONFIG_HOME="$HOME/.config"
