@@ -70,3 +70,6 @@ alias lab-on='export KUBECONFIG=~/.kube/minikube-config && echo "✓ Lab mode ON
 alias lab-off='export KUBECONFIG=~/.kube/config && echo "✓ Lab mode OFF — talking to main clusters"'
 alias kctx='kubectl config current-context'
 # ----------------------
+#
+# # Claude Code safety - prevent running from home or projects root
+alias claude='[[ $(pwd) == $HOME || $(pwd) == $HOME/Projects ]] && echo "Too broad. cd into a specific project first." || command claude'
