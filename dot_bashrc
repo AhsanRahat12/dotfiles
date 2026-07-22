@@ -44,10 +44,8 @@ export XDG_STATE_HOME="$HOME/.local/state"
 command -v starship &>/dev/null && eval "$(starship init bash)"
 eval "$(mise activate bash)"
 
-# SSH Agent - loads YubiKey into agent so git can authenticate with GitHub
-# Only prompts for PIN if key is not already loaded
-eval $(ssh-agent) > /dev/null 2>&1
-ssh-add -l &>/dev/null || ssh-add -K 2>/dev/null
+# SSH Agent - keychain persists the agent across terminals/reboots
+command -v keychain &>/dev/null && eval $(keychain --eval --quiet ~/.ssh/id_ed25519_sk_github_1)
 
 # Tab completion - cycle through options
 bind '"\t": menu-complete'
