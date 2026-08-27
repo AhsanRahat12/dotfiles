@@ -20,7 +20,7 @@ function newpost {
 # Kubectl
 alias k='kubectl'
 [[ -r /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
-command -v kubectl &>/dev/null && source <(kubectl completion bash)
+command -v kubectl &>/dev/null && source ~/.kube/completion.bash.inc
 command -v kubectl &>/dev/null && complete -o default -F __start_kubectl k
 export KUBE_EDITOR=vim
 export ANTHROPIC_MODEL=opusplan
